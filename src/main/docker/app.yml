@@ -1,0 +1,14 @@
+version: '2'
+services:
+    hibernate-app:
+        image: hibernate
+        external_links:
+            - hibernate-postgresql:postgresql
+        environment:
+            - SPRING_PROFILES_ACTIVE=prod,swagger
+            - SPRING_DATASOURCE_URL=jdbc:postgresql://postgresql:5432/hibernate
+            - JHIPSTER_SLEEP=10 # gives time for the database to boot before the application
+    hibernate-postgresql:
+        extends:
+            file: postgresql.yml
+            service: hibernate-postgresql
